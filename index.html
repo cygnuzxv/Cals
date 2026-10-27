@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucker Grade Calc</title>
+    <style>
+        body { background: #1a1a1a; color: #00ff00; font-family: monospace; padding: 20px; }
+        .box { border: 1px dashed cyan; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
+        input { background: #333; color: #fff; border: 1px solid #00ff00; padding: 10px; width: 85%; margin: 5px 0; border-radius: 4px; }
+        button { background: #00ff00; color: #000; padding: 15px; border: none; font-weight: bold; width: 100%; cursor: pointer; border-radius: 5px; }
+        .result { margin-top: 15px; color: cyan; font-size: 1.1em; border-top: 1px solid #444; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>📊 Sucker Grade Predictor</h2>
+
+    <div class="box">
+        Q1: <input type="number" id="q1" value="84.222"> <br>
+        Q2: <input type="number" id="q2" value="82.333"> <br>
+        Q3: <input type="number" id="q3" value="87.125"> <br>
+        Q4: <input type="number" id="q4" placeholder="Enter Q4 grade">
+    </div>
+
+    <button onclick="calculate()">PRESS  THE BUTTON TO SEE YOUR GENERAL AVERAGE</button>
+
+    <div id="finalOutput" class="result">Enter your grades to see your fate! 😘</div>
+
+    <script>
+        function calculate() {
+            let q1 = parseFloat(document.getElementById('q1').value) || 0;
+            let q2 = parseFloat(document.getElementById('q2').value) || 0;
+            let q3 = parseFloat(document.getElementById('q3').value) || 0;
+            let q4 = parseFloat(document.getElementById('q4').value) || 0;
+
+            let sem1 = (q1 + q2) / 2;
+            let sem2 = (q3 + q4) / 2;
+            let genAvg = (sem1 + sem2) / 2;
+
+            let output = document.getElementById('finalOutput');
+            let message = "Gen Avg: " + genAvg.toFixed(3) + "<br><br>";
+
+            if (genAvg < 80) {
+                output.innerHTML = message + "<b style='color:red;'>KARTAPS KA NALANG BOI! 🎋🚛</b>";
+            } else if (genAvg <= 89.444) {
+                output.innerHTML = message + "Better luck next time boi. 😂";
+            } else if (genAvg >= 89.500) {
+                output.innerHTML = message + "<b style='color:yellow;'>Good student? Abaw good student 💅</b>";
+            }
+        }
+    </script>
+</body>
+</html>
+
+<span id="heart-btn" onclick="prankMode()" style="margin-top: 30px; color: cyan; text-decoration: underline; cursor: pointer; display: block;">
+    ⚠️ DO NOT PRESS THIS BUTTON 
+    
+    (this is prohibited) ⚠️
+</span>
+
+<script>
+    function prankMode() {
+        // Change background to something dark and serious first
+        document.body.style.background = "#000";
+        
+        // Replace everything with the gorilla surprise
+        document.body.innerHTML = `
+            <div style="padding: 20px; color: white;">
+                <h1 style="font-size: 1.5em; color: red; ">PROJECT : ULOL IT'S A PRANK.</h1>
+                
+                <img src="gorilla.jpg"
+                     alt="Surprise!" style="width: 100%; max-width: 400px; border-radius: 15px; margin: 20px 0;">
+                
+                <p style="font-size: 1.2em;">TI? ANO BOI OKI MAN?HAHAHAHA.</p>
+                
+                <button onclick="location.reload()" style="background:#00ff00; color:black; padding:10px; border-radius:5px; border:none; font-weight:bold;">
+                    Back to SuckerCal
+                </button>
+            </div>
+        `;
+    }
+</script>
